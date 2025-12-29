@@ -1,14 +1,16 @@
 # Timer ⏱️
 
-A simple, clean countdown timer built with HTML, CSS, and JavaScript — perfect to drop into any project or learn from as a frontend exercise.
+A simple and expandable timer project built with **HTML, CSS, and JavaScript**.
 
-This is a lightweight timer you can start, pause, and reset right in the browser.
+The project is designed as a clean frontend exercise and will include full JavaScript logic for timer control (start, pause, reset, countdown).
 
 ---
 
 ## 🚀 Features
 
-- ✅ Countdown timer with controls (start / pause / reset)
-- ✅ Easy to customize visuals (CSS-ready)
-- ✅ Pure HTML/CSS/JS — no frameworks, no bloat
+- ⏱️ Timer interface
+- ▶️ Start / ⏸ Pause / 🔄 Reset controls *(JS logic in progress)*
+- 🎨 Customizable UI with CSS
+- 🧠 Pure JavaScript — no frameworks
+
 

@@ -1,32 +1,45 @@
 const timer = (deadline) => {
-  console.log(deadline);
   const timerHours = document.getElementById("timer-hours");
   const timerMinutes = document.getElementById("timer-minutes");
   const timerSeconds = document.getElementById("timer-seconds");
 
-  const getTimeRemaining = () => {
-    let dateStop = new Date(deadline).getTime();
-    let dateNow = new Date().getTime();
-    let timeRemaining = (dateStop - dateNow) / 1000;
-    let hours = Math.floor((timeRemaining / 60 / 60) % 24);
-    let minutes = Math.floor((timeRemaining / 60) % 60);
-    let seconds = Math.floor(timeRemaining % 60);
+  const pad = (num) => String(num).padStart(2, "0");
 
-    return { timeRemaining, hours, minutes, seconds };
+  const getTimeRemaining = () => {
+    const total = new Date(deadline) - new Date();
+
+    if (total <= 0) {
+      return {
+        total: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      };
+    }
+
+    const seconds = Math.floor((total / 1000) % 60);
+    const minutes = Math.floor((total / 1000 / 60) % 60);
+    const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+
+    return { total, hours, minutes, seconds };
   };
 
   const updateClock = () => {
-    let getTime = getTimeRemaining();
+    console.log("tick"); // 1 раз в 1000ms
 
-    timerHours.textContent = getTime.hours;
-    timerMinutes.textContent = getTime.minutes;
-    timerSeconds.textContent = getTime.seconds;
+    const t = getTimeRemaining();
 
-    if (getTime.timeRemaining > 0) {
-      setTimeout(updateClock, 1000);
+    timerHours.textContent = pad(t.hours);
+    timerMinutes.textContent = pad(t.minutes);
+    timerSeconds.textContent = pad(t.seconds);
+
+    if (t.total === 0) {
+      clearInterval(intervalId);
     }
   };
+
   updateClock();
+  const intervalId = setInterval(updateClock, 1000);
 };
 
 export default timer;
